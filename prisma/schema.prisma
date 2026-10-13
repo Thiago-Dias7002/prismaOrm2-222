@@ -12,6 +12,16 @@ datasource db {
   provider = "mysql"
 }
 
+model Alunos {
+  id          Int      @id @default(autoincrement())
+  nome        String
+  email       String   @unique
+  cod_usuario String   @unique
+  senha       String
+  idade       Int
+  criadoEm    DateTime @default
+}
+
 model Livros {
   id          Int      @id @default(autoincrement())
   titulo      String
