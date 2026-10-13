@@ -1,5 +1,5 @@
 {
-  "name": "ApiOrm",
+  "name": "apiorm",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,7 +13,7 @@
   "type": "module",
   "devDependencies": {
     "@types/express": "^5.0.6",
-    "@types/node": "^26.6.2",
+    "@types/node": "^26.6.5",
     "@types/pg": "^8.23.1",
     "prisma": "^7.10.0",
     "tsx": "^4.23.15",
@@ -26,5 +26,13 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "pg": "^8.23.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thiago-Dias7002/CRUD-LIVROS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Thiago-Dias7002/CRUD-LIVROS/issues"
+  },
+  "homepage": "https://github.com/Thiago-Dias7002/CRUD-LIVROS#readme"
 }

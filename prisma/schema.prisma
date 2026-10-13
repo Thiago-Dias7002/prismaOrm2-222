@@ -19,7 +19,7 @@ model Alunos {
   cod_usuario String   @unique
   senha       String
   idade       Int
-  criadoEm    DateTime @default
+  criadoEm    DateTime @default(now())
 }
 
 model Livros {
