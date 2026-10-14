@@ -10,9 +10,11 @@ http:
     type: json
     data: |-
       {
-        "titulo": "Dom Casmurro",
-        "autor": "Machado de Assis",
-        "paginas": 256
+        "nome": "Maria Silva",
+        "email": "maria@email.com",
+        "codUsuario": "M001",
+        "senha": "123456",
+        "idade": 20
       }
   auth: inherit
 

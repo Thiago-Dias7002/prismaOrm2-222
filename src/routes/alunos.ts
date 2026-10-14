@@ -1,13 +1,15 @@
 import { Router, Request, Response } from "express";
 import { prisma } from "../prisma";
 
-import { buscaTodosAlunos } from "../Controle/AlunosControle";
+import { adicionarAlunoControle, buscaTodosAlunos, buscaUmAluno } from "../Controle/AlunosControle";
 
 const router = Router();
 
-router.get("/", buscaTodosAlunos)
+router.get("/", buscaTodosAlunos);
 
+router.get("/:id", buscaUmAluno);
 
+router.post("/", adicionarAlunoControle);
 
 /*
 router.get("/", async (req: Request, res: Response) => {
@@ -15,6 +17,7 @@ router.get("/", async (req: Request, res: Response) => {
     res.status(200).json(alunos);
 });
 */
+/*
 router.post("/", async (req: Request, res: Response) => {
     const {
         nome,
@@ -32,6 +35,7 @@ router.post("/", async (req: Request, res: Response) => {
 
     res.status(201).json(aluno);
 });
+*/
 
 router.put("/:id", async (req: Request, res: Response) => {
     const { id } = req.params;
