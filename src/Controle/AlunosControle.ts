@@ -37,6 +37,7 @@ const adicionarAlunoControle = async (req: Request, res: Response) => {
             'idAluno': aluno.id
         })
     } catch (error){
+        console.error(error); // <-- Adicione esta linha para exibir o erro no terminal
         return res.status(500).json({
             'sucesso': false,
             'mensagem': 'Falha ao adicionar o aluno',

@@ -63,14 +63,5 @@ router.delete("/:id", async (req: Request, res: Response) => {
     res.json(aluno);
 });
 
-router.get("/:id", async (req: Request, res: Response) => {
-    const { id } = req.params;
-    
-    const aluno = await prisma.alunos.findUnique({
-        where: { id: Number(id) },
-    });
-
-    res.status(200).json(aluno);
-});
 
 export default router;

@@ -1,7 +1,7 @@
 import { prisma } from "../prisma";
 
 interface IAluno {
-    idUsuario:      number | null
+    idUsuario?:     number | null
     nome:           string
     email:          string
     codUsuario:     string
@@ -28,13 +28,13 @@ const adicionarAluno = async (data: IAluno) => {
         data: { 
             nome:           data.nome,
             email:          data.email,
-            cod_usuario:    data.codUsuario,
+            cod_usuario:    data.codUsuario || (data as any).cod_usuario,
             senha:          data.senha,
             idade:          data.idade
         }
     });
 
-    return aluno
+    return aluno;
 }
 
 export {

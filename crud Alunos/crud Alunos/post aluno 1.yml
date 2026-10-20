@@ -1,6 +1,7 @@
 info:
   name: post aluno 1
   type: http
+  seq: 1
 
 http:
   method: POST
@@ -11,7 +12,7 @@ http:
       {
         "nome": "Maria Silva",
         "email": "maria@email.com",
-        "codUsuario": "M001",
+        "cod_usuario": "M001",
         "senha": "123456",
         "idade": 20
       }
