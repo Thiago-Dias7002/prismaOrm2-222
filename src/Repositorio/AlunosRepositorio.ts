@@ -36,6 +36,20 @@ const buscaAlunoId = async (id: number) => {
     return aluno;
 }
 
+const editarAluno = async (id: number, aluno: IAluno) => {
+    const editarAluno = await prisma.alunos.update({
+        where: { id },
+        data: {
+            nome:           aluno.nome,
+            email:          aluno.email,
+            idade:          aluno.idade,
+            cod_usuario:    aluno.codUsuario,
+            senha:          aluno.senha
+        }
+    })
+    return editarAluno;
+}
+
 const deleteAluno = async (id: number) => {
     const aluno = await prisma.alunos.delete({
         where: {id: id},
@@ -49,5 +63,6 @@ export {
     buscaTodosAlunosRepositorio,
     adicionarAluno,
     buscaAlunoId,
+    editarAluno,
     deleteAluno,
 }

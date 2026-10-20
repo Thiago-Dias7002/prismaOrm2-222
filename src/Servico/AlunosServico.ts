@@ -3,6 +3,7 @@ import {
     buscaTodosAlunosRepositorio, 
     adicionarAluno, 
     buscaAlunoId, 
+    editarAluno,
     deleteAluno 
 } from "../Repositorio/AlunosRepositorio";
     
