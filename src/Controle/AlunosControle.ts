@@ -1,5 +1,5 @@
 import { Request, Response} from "express";
-import { adicionarAlunoServico, buscaTodosAlunosServico, buscaUmAlunoServico } from "../Servico/AlunosServico";
+import { adicionarAlunoServico, buscaTodosAlunosServico, buscaUmAlunoServico, buscaAlunoIdServico } from "../Servico/AlunosServico";
 import { IAluno } from "../Repositorio/AlunosRepositorio";
 
 const buscaTodosAlunos = async (req: Request, res: Response) => {
@@ -27,6 +27,21 @@ const buscaUmAluno = async (req: Request, res: Response) => {
     }
 }
 
+const buscaAlunoIdControle = async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    try {
+        const aluno = await buscaAlunoIdServico(Number(id));
+        return res.status(200).json({
+            'sucesso': true,
+            'mensagem': 'Aluno encontrado com sucesso',
+            'Aluno': 'aluno'
+        })
+    } catch(erro) {
+        res.status(500).json({Error:"Erro ao consultar o Aluno"})
+    }
+}
+
 const adicionarAlunoControle = async (req: Request, res: Response) => {
     const alunoRequest: IAluno = req.body;
     try {
@@ -46,4 +61,4 @@ const adicionarAlunoControle = async (req: Request, res: Response) => {
     }
 }
 
-export { buscaTodosAlunos, buscaUmAluno, adicionarAlunoControle }
+export { buscaTodosAlunos, buscaUmAluno, adicionarAlunoControle, buscaAlunoIdControle }

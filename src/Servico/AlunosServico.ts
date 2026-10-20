@@ -1,5 +1,5 @@
 import { buscaUmAlunoRepositorio, buscaTodosAlunosRepositorio, IAluno } from "../Repositorio/AlunosRepositorio";
-import { adicionarAluno } from "../Repositorio/AlunosRepositorio";
+import { adicionarAluno, buscaAlunoId } from "../Repositorio/AlunosRepositorio";
 
 const buscaTodosAlunosServico = async () => {
     const alunos = await buscaTodosAlunosRepositorio();
@@ -13,6 +13,19 @@ const buscaUmAlunoServico = async (id: number) => {
 
     const aluno = await buscaUmAlunoRepositorio(Number(id));
     return aluno;
+}
+
+const buscaAlunoIdServico = async (id: number) => {
+    try {
+        if (id === 0) {
+            throw ('Passe um valor para busca')
+        }
+
+        const alunos = await buscaAlunoId(id);
+        return alunos;
+    } catch (erro) {
+        throw (erro)
+    }
 }
 
 const adicionarAlunoServico = async (aluno: IAluno) => {
@@ -31,4 +44,4 @@ const adicionarAlunoServico = async (aluno: IAluno) => {
     }
 }
 
-export { buscaTodosAlunosServico, buscaUmAlunoServico, adicionarAlunoServico }
+export { buscaTodosAlunosServico, buscaUmAlunoServico, adicionarAlunoServico, buscaAlunoIdServico }

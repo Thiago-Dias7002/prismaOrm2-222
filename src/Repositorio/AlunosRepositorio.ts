@@ -37,9 +37,17 @@ const adicionarAluno = async (data: IAluno) => {
     return aluno;
 }
 
+const buscaAlunoId = async (id: number) => {
+    const aluno = await prisma.alunos.findUnique({
+        where: { id },
+    });
+    return aluno;
+}
+
 export {
     buscaUmAlunoRepositorio,
     buscaTodosAlunosRepositorio,
     adicionarAluno,
+    buscaAlunoId,
     IAluno
 }
