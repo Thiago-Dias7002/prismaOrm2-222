@@ -1,13 +1,19 @@
 import { Router, Request, Response } from "express";
 import { prisma } from "../prisma";
 
-import { adicionarAlunoControle, buscaTodosAlunos, buscaUmAluno } from "../Controle/AlunosControle";
+import { 
+    adicionarAlunoControle, 
+    buscaTodosAlunos, 
+    buscaAlunoIdControle,
+    deleteAlunoControle,
+} from "../Controle/AlunosControle";
 
 const router = Router();
 
 router.get("/", buscaTodosAlunos);
 
-router.get("/:id", buscaUmAluno);
+router.get("/:id", buscaAlunoIdControle);
+
 
 router.post("/", adicionarAlunoControle);
 
@@ -53,7 +59,9 @@ router.put("/:id", async (req: Request, res: Response) => {
     res.json(aluno);
 });
 
-router.delete("/:id", async (req: Request, res: Response) => {
+router.delete("/:id", deleteAlunoControle)
+
+/* router.delete("/:id", async (req: Request, res: Response) => {
     const { id } = req.params;
     
     const aluno = await prisma.alunos.delete({
@@ -62,6 +70,6 @@ router.delete("/:id", async (req: Request, res: Response) => {
 
     res.json(aluno);
 });
-
+*/
 
 export default router;

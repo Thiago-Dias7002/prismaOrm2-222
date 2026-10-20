@@ -15,14 +15,6 @@ const buscaTodosAlunosRepositorio = async () => {
     return alunos;
 }
 
-const buscaUmAlunoRepositorio = async (id: number) => {
-    const aluno = await prisma.alunos.findUnique({
-        where: { id }
-    });
-
-    return aluno;
-}
-
 const adicionarAluno = async (data: IAluno) => {
     const aluno = await prisma.alunos.create({
         data: { 
@@ -44,10 +36,18 @@ const buscaAlunoId = async (id: number) => {
     return aluno;
 }
 
+const deleteAluno = async (id: number) => {
+    const aluno = await prisma.alunos.delete({
+        where: {id: id},
+    });
+
+    return aluno;
+}
+
 export {
-    buscaUmAlunoRepositorio,
+    IAluno,
     buscaTodosAlunosRepositorio,
     adicionarAluno,
     buscaAlunoId,
-    IAluno
+    deleteAluno,
 }

@@ -1,18 +1,14 @@
-import { buscaUmAlunoRepositorio, buscaTodosAlunosRepositorio, IAluno } from "../Repositorio/AlunosRepositorio";
-import { adicionarAluno, buscaAlunoId } from "../Repositorio/AlunosRepositorio";
-
+import {
+    IAluno, 
+    buscaTodosAlunosRepositorio, 
+    adicionarAluno, 
+    buscaAlunoId, 
+    deleteAluno 
+} from "../Repositorio/AlunosRepositorio";
+    
 const buscaTodosAlunosServico = async () => {
     const alunos = await buscaTodosAlunosRepositorio();
     return alunos;
-}
-
-const buscaUmAlunoServico = async (id: number) => {
-    if (!id || Number.isNaN(Number(id))) {
-        throw new Error("ID do aluno inválido");
-    }
-
-    const aluno = await buscaUmAlunoRepositorio(Number(id));
-    return aluno;
 }
 
 const buscaAlunoIdServico = async (id: number) => {
@@ -44,4 +40,23 @@ const adicionarAlunoServico = async (aluno: IAluno) => {
     }
 }
 
-export { buscaTodosAlunosServico, buscaUmAlunoServico, adicionarAlunoServico, buscaAlunoIdServico }
+const deleteAlunoServico = async (id: number) => {
+    try {
+        if (id === 0) {
+            throw ('Passe um valor para busca')
+        }
+
+        const existeAluno = buscaAlunoId(id);
+
+        if (!existeAluno) {
+            throw ('Aluno não encontrado')
+        }
+
+        const alunos = await deleteAluno(id);
+        return alunos;
+    } catch (erro) {
+        throw (erro)
+    }
+}
+
+export { buscaTodosAlunosServico, adicionarAlunoServico, buscaAlunoIdServico, deleteAlunoServico }

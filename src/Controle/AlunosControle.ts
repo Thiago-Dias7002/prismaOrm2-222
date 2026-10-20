@@ -1,6 +1,11 @@
 import { Request, Response} from "express";
-import { adicionarAlunoServico, buscaTodosAlunosServico, buscaUmAlunoServico, buscaAlunoIdServico } from "../Servico/AlunosServico";
 import { IAluno } from "../Repositorio/AlunosRepositorio";
+import { 
+    adicionarAlunoServico, 
+    buscaTodosAlunosServico, 
+    buscaAlunoIdServico, 
+    deleteAlunoServico,
+} from "../Servico/AlunosServico";
 
 const buscaTodosAlunos = async (req: Request, res: Response) => {
     try {
@@ -11,21 +16,6 @@ const buscaTodosAlunos = async (req: Request, res: Response) => {
     }
 }
 
-const buscaUmAluno = async (req: Request, res: Response) => {
-    try {
-        const { id } = req.params;
-
-        const aluno = await buscaUmAlunoServico(Number(id));
-
-        if (!aluno) {
-            return res.status(404).json({ error: "Aluno não encontrado" });
-        }
-
-        return res.status(200).json(aluno);
-    } catch (erro) {
-        return res.status(500).json({ error: "Erro ao consultar o aluno" });
-    }
-}
 
 const buscaAlunoIdControle = async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -38,7 +28,11 @@ const buscaAlunoIdControle = async (req: Request, res: Response) => {
             'Aluno': 'aluno'
         })
     } catch(erro) {
-        res.status(500).json({Error:"Erro ao consultar o Aluno"})
+        res.status(500).json({
+            'sucesso': false,
+            'mensagem': 'Erro ao consultar o Aluno',
+            'Aluno': 'null'
+        })
     }
 }
 
@@ -61,4 +55,22 @@ const adicionarAlunoControle = async (req: Request, res: Response) => {
     }
 }
 
-export { buscaTodosAlunos, buscaUmAluno, adicionarAlunoControle, buscaAlunoIdControle }
+const deleteAlunoControle = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    try {
+        const aluno = await deleteAlunoServico(Number(id));
+        return res.status(200).json({
+            'sucesso': true,
+            'mensagem': 'Aluno Excluído com Sucesso',
+            'Aluno': aluno
+        })
+    } catch (erro) {
+        return res.status(500).json({
+            'sucesso': false,
+            'mensagem': 'Erro ao Excluír o aluno',
+            'Aluno': null
+        })
+    }
+}
+
+export { buscaTodosAlunos, adicionarAlunoControle, buscaAlunoIdControle, deleteAlunoControle }
