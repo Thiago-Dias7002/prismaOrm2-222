@@ -10,9 +10,9 @@ http:
     type: json
     data: |-
       {
-        "titulo": "O Senhor dos Anéis",
-        "autor": "J.R.R. Tolkien",
-        "paginas": 1200
+        "titulo": "Turma da monica",
+        "autor": "Mussolini",
+        "paginas": 90000
       }
   auth: inherit
 

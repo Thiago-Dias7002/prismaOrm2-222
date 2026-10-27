@@ -61,7 +61,9 @@ const editarLivroServico = async (id: number, livro: ILivro) => {
         }
 
         const resultado = await editarLivro(id, livro);
+        
         return resultado;
+
     } catch (erro) {
         throw (erro);
     }

@@ -1,5 +1,5 @@
 info:
-  name: post aluno 1
+  name: POST ALUNO CRUD
   type: http
   seq: 1
 
@@ -10,11 +10,11 @@ http:
     type: json
     data: |-
       {
-        "nome": "Maria Silva",
-        "email": "maria@email.com",
-        "cod_usuario": "M001",
-        "senha": "123456",
-        "idade": 20
+        "nome": "Rafael",
+        "email": "rafaelcara@gmail.com",
+        "cod_usuario": "rafael123",
+        "senha": "rafael999",
+        "idade": 24
       }
   auth: inherit
 

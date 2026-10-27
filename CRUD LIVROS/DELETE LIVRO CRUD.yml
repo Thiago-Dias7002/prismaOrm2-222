@@ -1,10 +1,14 @@
 info:
   name: DELETE LIVRO CRUD
   type: http
+  seq: 1
 
 http:
   method: DELETE
   url: http://localhost:3000/livros/1
+  body:
+    type: json
+    data: ""
   auth: inherit
 
 settings:
