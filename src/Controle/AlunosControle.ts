@@ -5,6 +5,9 @@ import {
     buscaTodosAlunosServico, 
     buscaAlunoIdServico, 
     deleteAlunoServico,
+    editarAlunoServico,
+    loginAluno,
+    ILoginAluno,
 } from "../Servico/AlunosServico";
 
 const buscaTodosAlunos = async (req: Request, res: Response) => {
@@ -15,7 +18,6 @@ const buscaTodosAlunos = async (req: Request, res: Response) => {
         res.status(500).json({ error:"Erro ao consultar todos os Alunos"})
     }
 }
-
 
 const buscaAlunoIdControle = async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -55,6 +57,25 @@ const adicionarAlunoControle = async (req: Request, res: Response) => {
     }
 }
 
+const editarAlunoControle =  async (req: Request, res: Response) => {
+    const alunoRequest: IAluno = req.body;
+    const { id } = req.params;
+    try {
+        const aluno = await editarAlunoServico(Number(id), alunoRequest)
+        return res.status(201).json({
+            'sucesso': aluno.id > 0,
+            'mensagem': 'Aluno atualizado com Sucesso',
+            'IdAluno': aluno.id
+        })
+    } catch (error) {
+        return res.status(500) .json({
+            'sucesso': false,
+            'mensagem': 'Falha ao atualizar o aluno.',
+            'idAluno': null
+        })
+    }
+}
+
 const deleteAlunoControle = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
@@ -73,4 +94,29 @@ const deleteAlunoControle = async (req: Request, res: Response) => {
     }
 }
 
-export { buscaTodosAlunos, adicionarAlunoControle, buscaAlunoIdControle, deleteAlunoControle }
+const loginControle = async (req: Request, res: Response) => {
+    const login: ILoginAluno = req.body
+    try {
+        const aluno = await loginAluno(login);
+
+        return res.status(200).json({
+            'sucesso': aluno > 0,
+            'mensagem': 'Login realizado com Sucesso',
+            'idAluno': aluno
+        })
+    } catch (error) {
+        return res.status(500).json({
+            'sucesso': false,
+            'mensagem': 'falha ao logar o aluno.',
+            'idAluno': null
+        })
+    }
+}
+
+export {
+    buscaTodosAlunos,
+    adicionarAlunoControle,
+    buscaAlunoIdControle,
+    deleteAlunoControle,
+    editarAlunoControle,
+}

@@ -15,6 +15,18 @@ const buscaTodosAlunosRepositorio = async () => {
     return alunos;
 }
 
+const buscaAlunosLogin = async (email: string, codUsuario: string) => {
+    const alunos = await prisma.alunos.findFirst({
+        where: {
+            OR: [
+                {email: email},
+                {cod_usuario: codUsuario}
+            ]
+        }
+    });
+    return alunos;
+}
+
 const adicionarAluno = async (data: IAluno) => {
     const aluno = await prisma.alunos.create({
         data: { 
@@ -65,4 +77,5 @@ export {
     buscaAlunoId,
     editarAluno,
     deleteAluno,
+    buscaAlunosLogin,
 }

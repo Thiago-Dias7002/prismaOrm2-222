@@ -10,11 +10,9 @@ http:
     type: json
     data: |-
       {
-        "nome": "Maria Silva",
-        "email": "maria@email.com",
-        "codUsuario": "M001",
-        "senha": "123456",
-        "idade": 20
+        "titulo": "O Senhor dos Anéis",
+        "autor": "J.R.R. Tolkien",
+        "paginas": 1200
       }
   auth: inherit
 
