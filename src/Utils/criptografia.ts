@@ -5,6 +5,14 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 const ALGORITHM = "ripemd160WithRSA"
 const SECRET_TOKEN_AUTENTICACAO = "teste123456789"
 
+interface AuthRequest extends Request {
+    idUsuario: string | number;
+}
+
+interface TokenPayload extends JwtPayload {
+    idUsuario: string | number;
+}
+
 const hash = (senha: string | number) => {
     if (typeof(senha) === "number") {
         senha = senha.toString();
@@ -22,7 +30,32 @@ const gerarToken = (idUsuario: number) => {
     return token
 }
 
+const validaToken = (req: Request, res: Response, next: NextFunction) => {
+    const token = req.headers['x-access-token'] as string | undefined;
+    if (!token) {
+        return res.status(401).json({
+            autenticado: false,
+            message: 'Não autenticado.'
+        });
+    }
+
+    try {
+        const decoded = jwt.verify(
+            token,
+            SECRET_TOKEN_AUTENTICACAO
+        ) as TokenPayload;
+        // req.idUsuario = decoded.idUsuario
+        next();
+    } catch (erro) {
+        return res.status(500).json({
+            autenticacao: false,
+            message: 'Falha na autenticação do Token.'
+        });
+    }
+};
+
 export {
     hash,
     gerarToken,
+    validaToken,
 }

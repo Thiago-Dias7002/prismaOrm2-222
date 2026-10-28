@@ -1,5 +1,4 @@
 import { Router } from "express";
-
 import { 
     buscaTodosAlunos, 
     buscaAlunoIdControle,
@@ -8,14 +7,15 @@ import {
     editarAlunoControle,
     loginControle,
 } from "../Controle/AlunosControle";
+import { validaToken } from "../Utils/criptografia";
 
 const router = Router();
 
-router.get("/", buscaTodosAlunos);
-router.get("/:id", buscaAlunoIdControle);
-router.post("/login", loginControle);
-router.post("/", adicionarAlunoControle);
-router.put("/:id", editarAlunoControle);
-router.delete("/:id", deleteAlunoControle);
+router.get("/", validaToken, buscaTodosAlunos);
+router.get("/:id", validaToken, buscaAlunoIdControle);
+router.post("/login", validaToken, loginControle);
+router.post("/", validaToken, adicionarAlunoControle);
+router.put("/:id", validaToken, editarAlunoControle);
+router.delete("/:id", validaToken, deleteAlunoControle);
 
 export default router;
