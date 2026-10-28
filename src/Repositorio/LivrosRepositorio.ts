@@ -1,5 +1,5 @@
 import { prisma } from "../prisma";
-
+/* todo: add editora, isbn, mudar paginas para qtdpaginas */
 interface ILivro {
     id?:        number | null;
     titulo:     string;

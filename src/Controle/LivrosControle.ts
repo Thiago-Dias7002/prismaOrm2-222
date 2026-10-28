@@ -13,7 +13,7 @@ const buscaTodosLivros = async (req: Request, res: Response) => {
         const livros = await buscaTodosLivrosServico();
         return res.status(200).json(livros);
     } catch (erro) {
-        return res.status(500).json({ error: "Erro ao consultar todos os Livros" });
+        return res.status(500).json({ error: "Erro ao consultar todos os Livros." });
     }
 };
 
@@ -24,13 +24,13 @@ const buscaLivroIdControle = async (req: Request, res: Response) => {
         const livro = await buscaLivroIdServico(Number(id));
         return res.status(200).json({
             'sucesso': true,
-            'mensagem': 'Livro encontrado com sucesso',
+            'mensagem': 'Livro encontrado com sucesso.',
             'Livro': livro
         });
     } catch (erro) {
         return res.status(500).json({
             'sucesso': false,
-            'mensagem': 'Erro ao consultar o Livro',
+            'mensagem': 'Erro ao consultar o Livro.',
             'Livro': null
         });
     }
@@ -42,14 +42,14 @@ const adicionarLivroControle = async (req: Request, res: Response) => {
         const livro = await adicionarLivroServico(livroRequest);
         return res.status(201).json({
             'sucesso': livro.id > 0,
-            'mensagem': 'Livro Adicionado com Sucesso',
+            'mensagem': 'Livro Adicionado com Sucesso.',
             'idLivro': livro.id
         });
     } catch (error) {
         console.error(error);
         return res.status(500).json({
             'sucesso': false,
-            'mensagem': 'Falha ao adicionar o livro',
+            'mensagem': 'Falha ao adicionar o livro.',
             'idLivro': null
         });
     }
@@ -62,7 +62,7 @@ const editarLivroControle = async (req: Request, res: Response) => {
         const livro = await editarLivroServico(Number(id), livroRequest);
         return res.status(201).json({
             'sucesso': livro.id > 0,
-            'mensagem': 'Livro atualizado com Sucesso',
+            'mensagem': 'Livro atualizado com Sucesso.',
             'idLivro': livro.id
         });
     } catch (error) {
@@ -80,13 +80,13 @@ const deleteLivroControle = async (req: Request, res: Response) => {
         const livro = await deleteLivroServico(Number(id));
         return res.status(200).json({
             'sucesso': true,
-            'mensagem': 'Livro Excluído com Sucesso',
+            'mensagem': 'Livro Excluído com Sucesso.',
             'Livro': livro
         });
     } catch (erro) {
         return res.status(500).json({
             'sucesso': false,
-            'mensagem': 'Erro ao Excluir o livro',
+            'mensagem': 'Erro ao Excluir o livro.',
             'Livro': null
         });
     }

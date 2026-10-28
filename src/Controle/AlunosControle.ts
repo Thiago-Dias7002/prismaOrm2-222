@@ -27,7 +27,7 @@ const buscaAlunoIdControle = async (req: Request, res: Response) => {
         return res.status(200).json({
             'sucesso': true,
             'mensagem': 'Aluno encontrado com sucesso',
-            'Aluno': 'aluno'
+            'Aluno': aluno
         })
     } catch(erro) {
         res.status(500).json({
@@ -99,11 +99,7 @@ const loginControle = async (req: Request, res: Response) => {
     try {
         const aluno = await loginAluno(login);
 
-        return res.status(200).json({
-            'sucesso': aluno > 0,
-            'mensagem': 'Login realizado com Sucesso',
-            'idAluno': aluno
-        })
+        return res.status(200).json(aluno)
     } catch (error) {
         return res.status(500).json({
             'sucesso': false,
@@ -119,4 +115,5 @@ export {
     buscaAlunoIdControle,
     deleteAlunoControle,
     editarAlunoControle,
+    loginControle,
 }
